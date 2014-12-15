@@ -1,0 +1,2 @@
+class SnapshotController < ApplicationController
+end
