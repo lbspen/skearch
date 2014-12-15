@@ -40,6 +40,9 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
+  gem 'pry-rails'
+  gem 'pry-nav'
+  gem 'pry-stack_explorer'
 end
 
 group :test do
