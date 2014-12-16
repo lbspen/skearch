@@ -67,6 +67,13 @@ guard :rspec, cmd: "bundle exec rspec -f doc" do
     ]
   end
 
+  # Factories
+  begin
+    require 'active_support/inflector'
+    watch(%r{^spec/factories/(.+)\.rb$}) { |m| ["app/models/#{m[1].singularize}.rb", "spec/models/#{m[1].singularize}_spec.rb"] }
+  rescue LoadError
+  end
+
   # Rails config changes
   watch(rails.spec_helper)     { rspec.spec_dir }
   watch(rails.routes)          { "#{rspec.spec_dir}/routing" }
