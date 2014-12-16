@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'snapshot/new'
+
+  get 'snapshot/create'
+
+  get 'snapshot/index'
+
+  get 'snapshot/delete'
+
+  get 'snapshot/show'
+
+  root 'snapshot#new'
+
+  resources :snapshot
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
