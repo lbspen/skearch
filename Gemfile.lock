@@ -28,6 +28,9 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.6)
+    annotate (2.6.5)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (5.0.1.20140414130214)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -198,6 +201,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   capybara
   coffee-rails (~> 4.0.0)
   factory_girl_rails
