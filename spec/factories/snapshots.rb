@@ -10,5 +10,10 @@
 
 FactoryGirl.define do
   factory :snapshot do |f|
+    f.content '["document 1", "document 2"]'
+  end
+
+  factory :invalid_snapshot, parent: :snapshot do |f|
+    f.content nil
   end
 end

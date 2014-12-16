@@ -10,6 +10,12 @@
 
 require 'spec_helper'
 
-RSpec.describe Snapshot, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Snapshot, :type => :model do
+  it 'has a valid factory' do
+    expect(create(:snapshot)).to be_valid
+  end
+
+  it 'is invalid without content' do
+    expect(build(:snapshot, content: nil)).not_to be_valid
+  end
 end
