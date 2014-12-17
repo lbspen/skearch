@@ -143,6 +143,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.2.0)
       json (~> 1.4)
+    rr (1.1.2)
     rspec (3.1.0)
       rspec-core (~> 3.1.0)
       rspec-expectations (~> 3.1.0)
@@ -216,6 +217,7 @@ DEPENDENCIES
   pry-rails
   pry-stack_explorer
   rails (= 4.1.8)
+  rr
   rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

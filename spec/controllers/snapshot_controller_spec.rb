@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 RSpec.describe SnapshotController, :type => :controller do
+  before do
+    stub(Crawler).new.stub!.crawl
+  end
 
   describe "GET new" do
     before do
