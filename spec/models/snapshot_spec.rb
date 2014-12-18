@@ -17,6 +17,11 @@ describe Snapshot, :type => :model do
 
   let(:snapshot) { Snapshot.new }
 
+  it 'has many Documents' do
+    r = Snapshot.reflect_on_association(:documents)
+    expect(r.macro).to eq(:has_many)
+  end
+
   it 'has a valid factory' do
     factory = build(:snapshot, attributes_for(:snapshot))
     factory.crawl

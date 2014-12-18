@@ -9,6 +9,8 @@
 #
 
 class Snapshot < ActiveRecord::Base
+
+  has_many :documents
   validates :content, presence: true
 
   def crawl
