@@ -10,6 +10,6 @@
 
 FactoryGirl.define do
   factory :document do
-    snapshot
+    association :snapshot, factory: :snapshot_after_crawl
   end
 end

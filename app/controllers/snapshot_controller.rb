@@ -5,6 +5,7 @@ class SnapshotController < ApplicationController
 
   def create
     @snapshot = Snapshot.create(snapshot_params)
+    @snapshot.crawl
     if @snapshot.save
       flash[:success] = 'Snapshot created'
       redirect_to @snapshot

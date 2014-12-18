@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe SnapshotController, :type => :controller do
   before do
-    stub(Crawler).new.stub!.crawl
+    stub(Crawler).new.stub!.crawl { '["foo"]' }
   end
 
   describe "GET new" do
@@ -38,14 +38,18 @@ RSpec.describe SnapshotController, :type => :controller do
     end
 
     context 'with invalid attributes' do
+      before do
+        stub(Crawler).new.stub!.crawl { nil }
+      end
+
       it 'does not save the new snapshot' do |variable|
         expect{
-          get :create, snapshot: attributes_for(:invalid_snapshot)
+          get :create, snapshot: attributes_for(:snapshot)
         }.not_to change(Snapshot, :count)
       end
 
       it 're-renders the new template' do
-        get :create, snapshot: attributes_for(:invalid_snapshot)
+        get :create, snapshot: attributes_for(:snapshot)
         expect(response).to render_template(:new)
       end
     end

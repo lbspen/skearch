@@ -11,12 +11,8 @@
 class Snapshot < ActiveRecord::Base
   validates :content, presence: true
 
-  before_create :do_crawl
-
-  protected
-
-  def do_crawl
-    crawler = Crawler.new
-    crawler.crawl
+  def crawl
+    self.content = Crawler.new.crawl
   end
+
 end
