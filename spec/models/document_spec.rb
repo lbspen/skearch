@@ -33,22 +33,32 @@ RSpec.describe Document, :type => :model do
     expect(build(:document, terms: {})).to be_valid
   end
 
-  # context '#frequencies' do
-  #   let(:content) do
-  #     "Because I'm happy " \
-  #     "Clap along if you feel like a room without a roof " \
-  #     "Because I'm happy " \
-  #     "Clap along if you feel like happiness is the truth " \
-  #     "Because I'm happy " \
-  #     "Clap along if you know what happiness is to you " \
-  #     "Because I'm happy " \
-  #     "Clap along if you feel like that's what you wanna do"
-  #   end
+  context 'term counts' do
+    let(:content) do
+      "Because I'm happy " \
+      "Clap along if you feel like a room without a roof " \
+      "Because I'm happy " \
+      "Clap along if you feel like happiness is the truth " \
+      "Because I'm happy " \
+      "Clap along if you know what happiness is to you " \
+      "Because I'm happy " \
+      "Clap along if you feel like that's what you wanna do"
+    end
 
-  #   it 'generates frequencies from constructor parameter' do
-  #     doc = Document.new(content)
-  #     expect(doc.frequencies['happy']).to eq 4
-  #   end
-  # end
+    let(:doc) { Document.new(content) }
+
+    it 'generates term counts from constructor parameter' do
+      expect(doc.terms['happy']).to eq "4"
+      expect(doc.terms['roof']).to eq "1"
+    end
+
+    it 'sorts term counts descending by count' do
+      last_count = doc.sorted_frequencies.first.second
+      doc.sorted_frequencies.each do |pair|
+        expect(pair.second).to be <= last_count
+        last_count = pair.second
+      end
+    end
+  end
 end
 

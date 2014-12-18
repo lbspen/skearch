@@ -16,7 +16,18 @@ class Document < ActiveRecord::Base
   validate  :terms_must_not_be_nil
 
   def initialize(content)
-    super()
+    tokens = content.split(' ').to_a
+    term_counts = tokens.uniq.inject({}) do |hash, token|
+      hash[token] = tokens.count(token)
+      hash
+    end
+    super(terms: term_counts)
+  end
+
+  def sorted_frequencies
+    @frequencies ||=
+      self.terms.each { |k, v| self.terms[k] = Integer(v) }
+        .sort_by { |k, v| v }.reverse
   end
 
 private
