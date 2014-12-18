@@ -11,5 +11,16 @@
 require 'spec_helper'
 
 RSpec.describe Document, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'belongs to Snapshot' do
+    r = Document.reflect_on_association(:snapshot)
+    expect(r.macro).to eq(:belongs_to)
+  end
+
+  it 'is invalid without a snapshot' do
+    expect(build(:document, snapshot: nil)).not_to be_valid
+  end
+
+  it 'has a valid factory' do
+    expect(create(:document)).to be_valid
+  end
 end

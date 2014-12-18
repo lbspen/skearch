@@ -9,4 +9,7 @@
 #
 
 class Document < ActiveRecord::Base
+  belongs_to :snapshot
+
+  validates :snapshot, presence: true
 end

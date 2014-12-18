@@ -10,7 +10,6 @@
 
 FactoryGirl.define do
   factory :document do
-    
+    snapshot
   end
-
 end
