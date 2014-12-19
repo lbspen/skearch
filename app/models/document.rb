@@ -18,7 +18,7 @@ class Document < ActiveRecord::Base
   def initialize(contents)
     tokens = contents.downcase.split(' ').to_a
     term_counts = tokens.uniq.inject({}) do |hash, token|
-      hash[token] = tokens.count(token)
+      hash[token] = tokens.count(token) unless Stoplist::WORDS.include?(token)
       hash
     end
     super(terms: term_counts)
