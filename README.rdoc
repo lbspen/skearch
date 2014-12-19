@@ -1,28 +1,49 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Skill Search = Skearch?
 
-Things you may want to cover:
+> ...the half-life of software engineering ideas is likely not much more than 5 years. - Philippe Kruchten, "The Biological Half-Life of Software Engineering Ideas"
 
-* Ruby version
+This project is motivated by recent experiences. As a Project Manager, I was trying to keep up my coding skills on the side, and later I was trying to figure out which skills to pursue to get back into coding. Even with the subset of skills that chose, there will always be more to learn. Unless you're actively looking for and learning the latest technologies, obsolescence is inevitable.
 
-* System dependencies
+The point at which employers are asking for a skill is at a point in a new technology's life cycle when it has (hopefully) matured enough so that it can be used without introducing fatal defects into a live product. There are other indicators that could be used to identify a new technology at an earlier point of maturity, e.g. special sessions at conferences, or research seminars at universities. Though it would be interesting to incorporate other indicators, at first I'll stick with job listings to determine popularity.
 
-* Configuration
+### Phase One, December 2014
 
-* Database creation
+Comparison of term frequencies between locations, employers, and/or job titles for one crawl
 
-* Database initialization
+Technologies
 
-* How to run the test suite
+* Crawler - Capybara + Poltergeist
+* Indexer - ~~Sunspot~~ using a simple stop-list.
 
-* Services (job queues, cache servers, search engines, etc.)
+Sunspot's sweet spot is searching for documents containing terms. I was hoping that sunspot would expose terms and frequencies after indexing, but it's not obvious and it's easy enough to write a simple term counter without the rest of sunspot.
 
-* Deployment instructions
+### V0.1 (Follow along at [lbspen/skearch](https://github.com/lbspen/skearch))
+- [X] Generate app
+- [X] ~~Add sunspot~~
+- [X] Populate snapshot (hardcode location, job title for now)
+  - [X] Crawl
+  - [X] Parse
+- [X] Display term frequencies
 
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+### Future
+* Better error handling for crawl failures
+* Wait should be based on network traffic
+* Start search from UI
+* Specify search parameters from UI (number of results, job title, location, min term frequency)
+* View terms in UI
+* Job related stoplist
+* Logging
+* Histogram display of terms
+* Tag cloud display of terms
+* Term click-through to document
+* google lookup for terms
+* Comparison of two searches
+* Sunspot
+* Stemming
+* Phrases
+* Add other popularity indicators
+* Daily crawl for trends over time
+* No-SQL database
+* Geographical search
