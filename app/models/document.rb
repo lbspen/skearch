@@ -15,8 +15,8 @@ class Document < ActiveRecord::Base
   validates :snapshot, presence: true
   validate  :terms_must_not_be_nil
 
-  def initialize(content)
-    tokens = content.split(' ').to_a
+  def initialize(contents)
+    tokens = contents.downcase.split(' ').to_a
     term_counts = tokens.uniq.inject({}) do |hash, token|
       hash[token] = tokens.count(token)
       hash

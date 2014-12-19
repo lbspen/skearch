@@ -34,7 +34,7 @@ RSpec.describe Document, :type => :model do
   end
 
   context 'term counts' do
-    let(:content) do
+    let(:contents) do
       "Because I'm happy " \
       "Clap along if you feel like a room without a roof " \
       "Because I'm happy " \
@@ -45,7 +45,7 @@ RSpec.describe Document, :type => :model do
       "Clap along if you feel like that's what you wanna do"
     end
 
-    let(:doc) { Document.new(content) }
+    let(:doc) { Document.new(contents) }
 
     it 'generates term counts from constructor parameter' do
       expect(doc.terms['happy']).to eq "4"

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe SnapshotController, :type => :controller do
   before do
-    stub(Crawler).new.stub!.crawl { '["foo"]' }
+    stub(Crawler).new.stub!.crawl { ["foo"] }
   end
 
   describe "GET new" do
@@ -27,12 +27,12 @@ RSpec.describe SnapshotController, :type => :controller do
     context 'with valid attributes' do
       it 'creates a new snapshot' do
         expect{
-          get :create, snapshot: attributes_for(:snapshot)
+          get :create, snapshot: attributes_for(:snapshot_after_crawl)
         }.to change(Snapshot, :count).by(1)
       end
 
       it 'redirects to the new snapshot' do
-        get :create, snapshot: attributes_for(:snapshot)
+        get :create, snapshot: attributes_for(:snapshot_after_crawl)
         expect(response).to redirect_to Snapshot.last
       end
     end

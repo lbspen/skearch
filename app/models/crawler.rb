@@ -23,7 +23,10 @@ class Crawler
     texts = job_links.map do |href|
       session.visit "#{URL}#{href}"
       wait
-      Nokogiri::HTML(session.html).inner_text.squish
+      page = Nokogiri::HTML(session.html)
+      page.search('//script').remove
+      page.search('//style').remove
+      page.inner_text.squish
     end
   end
 

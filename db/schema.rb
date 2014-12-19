@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20141218071022) do
   end
 
   create_table "snapshots", force: true do |t|
-    t.text     "content"
+    t.text     "contents",   default: [], array: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
