@@ -16,6 +16,7 @@ class Document < ActiveRecord::Base
   validate  :terms_must_not_be_nil
 
   def initialize(contents)
+    return if contents.nil?
     tokens = contents.downcase.split(' ').to_a
     term_counts = tokens.uniq.inject({}) do |hash, token|
       hash[token] = tokens.count(token) unless Stoplist::WORDS.include?(token)

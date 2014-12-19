@@ -2,31 +2,33 @@ class Crawler
   URL = 'http://www.indeed.com'
 
   def crawl()
-    perform_search
-    visit_jobs
+    job_texts = []
+    (0...1).each do |i|
+      perform_search(i)
+      job_texts += visit_jobs
+    end
+    job_texts
   end
 
   private
 
-  def perform_search
-    # TODO: use query string below rather than clicking
-    # "http://www.indeed.com/jobs?q=Software+Engineer&l=Seattle%252C+WA"
-    session.visit URL
-    session.fill_in 'what', :with => job_title
-    session.fill_in 'where', :with => location
-    session.click_button 'Find Jobs'
+  def perform_search(start_index)
+    session.visit "#{URL}/jobs?q=#{job_title}&l=#{location}&start=#{start_index * 10}"
     wait
   end
 
   def visit_jobs
     job_links = session.all(:xpath,'//h2[@class="jobtitle"]/a').map {|link| link['href']}
-    texts = job_links.map do |href|
-      session.visit "#{URL}#{href}"
-      wait
-      page = Nokogiri::HTML(session.html)
-      page.search('//script').remove
-      page.search('//style').remove
-      page.inner_text.squish
+    job_links.map do |href|
+      begin
+        session.visit "#{URL}#{href}"
+        wait
+        page = Nokogiri::HTML(session.html)
+        page.search('//script').remove
+        page.search('//style').remove
+        page.inner_text.squish
+      rescue
+      end
     end
   end
 
@@ -35,11 +37,11 @@ class Crawler
   end
 
   def job_title
-    'Software Engineer'
+    'data+scientist'
   end
 
   def location
-    'Seattle, WA'
+    'Seattle,+WA'
   end
 
   def wait

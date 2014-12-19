@@ -3,7 +3,9 @@ require 'capybara/poltergeist'
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, {
     :debug => true,
-    :inspector => true
+    :inspector => true,
+    :js_errors => false,
+    :timeout => 100
   })
 end
 Capybara.default_driver = :poltergeist
