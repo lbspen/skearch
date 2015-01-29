@@ -1,6 +1,6 @@
 == README
 
-## Skill Search = Skearch?
+## Skill Search = Skearch
 
 > ...the half-life of software engineering ideas is likely not much more than 5 years. - Philippe Kruchten, "The Biological Half-Life of Software Engineering Ideas"
 
