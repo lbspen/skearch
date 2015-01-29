@@ -27,7 +27,7 @@ Sunspot's sweet spot is searching for documents containing terms. I was hoping t
   - [X] Parse
 - [X] Display term frequencies
 
-### Future
+### Future (Create stories in AgileZen when started)
 * Better error handling for crawl failures
 * Wait should be based on network traffic
 * Start search from UI
